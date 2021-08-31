@@ -40,7 +40,10 @@ class Monarchy:
 		self._pre_dfs(self.king, suc_list)
 		return suc_list
 		
-		
+
+# Test Cases 
+#--------------------
+
 m1 = Monarchy("Jake")
 m1.birth("Catherine", "Jake")
 m1.birth("Jane","Catherine")
@@ -50,9 +53,9 @@ m1.birth("Celine", "Jake")
 m1.birth("Mark","Catherine")
 m1.birth("Peter", "Celine")
 
-print(m1.get_suc())
+print(m1.get_suc())  # Correct Output --> ["Jake", "Catherine", "Jane", "Farah", "Mark", "Tom", "Celine", "Peter"]
 
 m1.death("Jake")
 m1.death("Jane")
-print(m1.get_suc())
 
+print(m1.get_suc()) # Correct Output --> ["Catherine", "Farah", "Mark", "Tom", "Celine", "Peter"]
