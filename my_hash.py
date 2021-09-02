@@ -31,13 +31,20 @@ class my_hash:
 
 		
 			
+	def keys(self):
+		keys_arr = [k for bucket in filter(lambda x: x is not None, self.data) for k,v in bucket ] 
+		return keys_arr
+		#result = filter(lambda x: x % 2 != 0, seq)
 			
 		
-
+#Test Cases 
 
 h = my_hash(4)
 print(h.data) # prints [None, None, None, None]
 h.set("grapes", 100)
+h.set("apples", 200)
+h.set("oranges", 300)
 print(h.data) # prints [None, None, None, list([["grapes", 100]])]
 print(h.get("grapes")) # prints 100
+print(h.keys()) # prints ["oranges", "grapes", "apples"]
 
