@@ -54,6 +54,7 @@ class LinkedList:
 		to_delete = cur.next
 		cur.next = to_delete.next
 		to_delete.next = None
+		self.len -=1
 				
 	def get_len(self):
 		return self.len
