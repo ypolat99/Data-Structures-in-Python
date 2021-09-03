@@ -58,11 +58,27 @@ class LinkedList:
 				
 	def get_len(self):
 		return self.len
-		
-		
+	
+	
+	
+	
+	def reverse(self):
+		first = self.head
+		second = self.head.next
+		self.tail = self.head
+		while second:
+			temp = second.next
+			second.next = first
+			first = second
+			second = temp
+		self.head.next = None
+		self.head = first
+	
 		
 
 # Test Cases
+
+
 
 l = LinkedList(5)
 print(l.head.val) #prints 5
@@ -83,3 +99,6 @@ l.print_list() #prints 4,5,5.5,6,7
 print("----")
 l.remove(2)
 l.print_list() #prints 4,5,6,7
+print("----")
+l.reverse()
+l.print_list() #prints 7,6,5,4
