@@ -66,6 +66,23 @@ class LinkedList:
 				
 	def get_len(self):
 		return self.len
+
+	def reverse(self):
+		if self.len ==1:
+			return self.head
+		first = self.head
+		second = self.head.next
+		first.prev = second
+		self.tail = self.head
+		while second:
+			temp = second.next
+			second.next = first
+			second.prev = temp
+			first = second
+			second = temp
+		self.head.next = None
+		self.head = first
+		
 		
 		
 		
@@ -99,3 +116,6 @@ l.print_list() #prints 4,5,6,7
 l.insert(2,5.5) 
 print("----")
 l.print_list() #prints 4,5,5.5, 6,7
+print("----")
+l.reverse()
+l.print_list() #prints 7,6,5.5,5,4
