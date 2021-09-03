@@ -31,9 +31,11 @@ class Stack:
 		#pops the last element from the stack and return its value
 		if self.len == 0:
 			return None
+		if self.len ==1:
+			self.bottom = None
 		old_top = self.top
 		self.top = self.top.next
-		self.len +=1
+		self.len -=1
 		return old_top.val
 		
 	def is_empty(self):
@@ -53,6 +55,22 @@ print(s.bottom.val) #prints 10
 print(s.peek()) #prints 20
 print(s.push(30)) #prints 3
 print(s.pop()) #prints 30
+print(s.pop()) #prints 20
+print(s.len) #prints 1
+print(s.bottom.val) #prints 10
+print(s.pop()) #prints 10
+print("----")
+print(s.pop()) #prints None
 
 
+
+
+
+
+
+
+
+
+
+		
 		
