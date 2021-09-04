@@ -1,41 +1,115 @@
 class TreeNode:
 	def __init__(self, value):
-		self.left = None
 		self.right = None
+		self.left = None
 		self.val = value
-
+		
 
 class Bst:
 	def __init__(self):
 		self.root = None
-		
 	def insert(self, value):
 		new_node = TreeNode(value)
-		if not self.root:
+		if self.root is None:
 			self.root = new_node
-			return
+			return 
 		else:
 			cur = self.root
 			while True:
 				if value < cur.val:
-					if not cur.left:
+					if cur.left is None:
 						cur.left = new_node
-						return
+						return 
 					else:
 						cur = cur.left
 				else:
-					if not cur.right:
+					if cur.right is None:
 						cur.right = new_node
-						return
+						return 
 					else:
-						cur = cur.right 
-	
+						cur = cur.right
+
+	def lookup(self, value):
+		if self.root is None:
+			return False
+		cur = self.root
+		while cur:
+			if value < cur.val:
+				cur = cur.left
+			elif value > cur.val:
+				cur = cur.right
+			elif value == cur.val:
+				return True
+		return False
+
+	def remove(self, value):
+		if not self.lookup(value):
+			return False
+		# go to the right then left of what you want to delte
+		cur = self.root
+		parent = Nonw
+		while cur:
+			if value < cur.val:
+				parent = cur
+				cur = cur.left
+			elif value > cur.val:
+				parent = cur
+				cur = cur.right
+			else:
+				#if there is no right child
+				if cur.right is None:
+					if not parent: # we are deleting root
+						self.root = cur.left
+					else:
+						if cur.val < parent.val:
+							parent.left = cur.left
+						else:
+							parent.right = cur.left
+							
+				elif cur.right.left is None:
+					if parent is None:
+						self.root = cur.left
+					else:
+						cur.right.left = cur.left
+						if parent.val > cur.val:
+							parent.left = cur.right
+						else:
+							parent.right = cur.right
+				else:
+					#find rights left most child
+					leftmost = cur.right.left
+					leftmost_parent = cur.rigt
+					while leftmost.left is not None:
+						leftmost_parent = leftmost
+						leftmost = leftmost.right
+
+					leftmost_parent.left = leftmost.right
+					leftmost.left = cur.left
+					leftmost.right = cur.right
+
+					if parent is None:
+						self.root = leftmost
+					else:
+						if parent.val > cur.val:
+							parent.left = leftmost
+						else: 
+							parent.right = leftmost
+		return True
+							
+			
+
+
+
+
+						
 	def print_in_order(self, root):
 		if root:
 			self.print_in_order(root.left)
 			print(root.val)
 			self.print_in_order(root.right)
+
 	
+
 	def print_pre_order(self, root):
 		if root:
 			print(root.val)
@@ -47,6 +121,10 @@ class Bst:
 			self.print_post_order(root.left)
 			self.print_ost_order(root.right)
 			print(root.val)
+		
+
+
+
 
 
 # Test Cases 
@@ -59,8 +137,13 @@ b.insert(170)
 b.insert(15)
 b.insert(1)
 
-b.print_in_order(b.root)
-		
-		
+b.print_in_order(b.root) # prints: 1,4,6,9,15,20,170
+print(b.lookup(170)) # print True
+print(b.lookup(171)) # print False
+print(b.lookup(12)) # print False
+print(b.lookup(1)) # print True
+
+
+
 			
-		
+	
