@@ -1,3 +1,4 @@
+import queue
 class TreeNode:
 	def __init__(self, value):
 		self.right = None
@@ -47,7 +48,7 @@ class Bst:
 			return False
 		# go to the right then left of what you want to delte
 		cur = self.root
-		parent = Nonw
+		parent = None
 		while cur:
 			if value < cur.val:
 				parent = cur
@@ -96,12 +97,18 @@ class Bst:
 							parent.right = leftmost
 		return True
 							
-			
-
-
-
-
-						
+	def bfs(self):
+		q= queue.Queue()
+		q.put(self.root)
+		while not q.empty():
+			n = q.get()
+			if n.left:
+				q.put(n.left)
+			if n.right:
+				q.put(n.right)
+			print(n.val)
+				
+		
 	def print_in_order(self, root):
 		if root:
 			self.print_in_order(root.left)
@@ -130,20 +137,17 @@ class Bst:
 # Test Cases 
 b = Bst()		
 b.insert(9)
-b.insert(4)
 b.insert(6)
-b.insert(20)
-b.insert(170)
-b.insert(15)
+b.insert(12)
 b.insert(1)
+b.insert(4)
+b.insert(34)
+b.insert(35)
 
 b.print_in_order(b.root) # prints: 1,4,6,9,15,20,170
 print(b.lookup(170)) # print True
 print(b.lookup(171)) # print False
 print(b.lookup(12)) # print False
 print(b.lookup(1)) # print True
-
-
-
-			
-	
+print("------------")
+b.bfs()
