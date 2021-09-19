@@ -1,4 +1,5 @@
 # A detailed explanation of this question can be found in the link below:
+#
 # https://leetcode.com/discuss/interview-question/302164/google-phone-screen-monarchy
 
 
