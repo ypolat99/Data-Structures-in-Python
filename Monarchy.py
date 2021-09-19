@@ -23,7 +23,7 @@ class Monarchy:
 		self._persons[child_name] = child
 		
 	
-  def death(self, name):
+ 	 def death(self, name):
 		died_person = self._persons[name]
 		if not died_person:
 			return 
