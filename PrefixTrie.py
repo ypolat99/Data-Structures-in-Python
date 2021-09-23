@@ -1,4 +1,4 @@
-# This is a Trie that has insertt, search, and prefix methods as shown below. 
+# This is a Trie that has insertt, search, and prefix methods as shown below
 
 class TrieNode:
 	def __init__(self):
